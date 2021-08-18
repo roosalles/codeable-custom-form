@@ -235,7 +235,7 @@ class Codeable_Custom_Form_Public {
 	}
 
 	/**
-	 * Create Shortcode for Users to add the button.
+	 * Create Shortcode for displaying form entries table.
 	 *
 	 * @since    1.0.0
 	 * @param    string $atts    The shortcode attributes.
