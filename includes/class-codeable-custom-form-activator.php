@@ -31,6 +31,25 @@ class Codeable_Custom_Form_Activator {
 	 */
 	public static function activate() {
 
+		// Create DB Table for custom form entries.
+		global $wpdb;
+
+		$table_name      = $wpdb->prefix . 'codeable_form_entries';
+		$charset_collate = $wpdb->get_charset_collate();
+
+		$sql = "CREATE TABLE $table_name (
+				id mediumint(9) NOT NULL AUTO_INCREMENT,
+				time datetime DEFAULT '0000-00-00 00:00:00' NOT NULL,
+				first_name tinytext NOT NULL,
+				last_name tinytext NOT NULL,
+				email tinytext NOT NULL,
+				subject tinytext NOT NULL,
+				message text NOT NULL,
+				PRIMARY KEY (id)
+			) $charset_collate;";
+
+		require_once ABSPATH . 'wp-admin/includes/upgrade.php';
+		maybe_create_table( $table_name, $sql );
 	}
 
 }
