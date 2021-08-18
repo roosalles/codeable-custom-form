@@ -13,6 +13,18 @@
 	color: red;
 }
 
+#ccf-form input {
+	width: 100%;
+}
+
+#ccf-form {
+	margin-top: 1em;
+}
+
+#ccf-form .ccf-field-wrapper {
+	margin-bottom: 1em;
+}
+
 #ccf-entries-table {
 	border-collapse: collapse;
 	width: 100%;
@@ -21,26 +33,28 @@
 #ccf-entries-table td,
 #ccf-entries-table th {
 	border: 1px solid #ddd;
-	padding: 8px;
+	padding: 12px;
+	width: 25%;
+	white-space: nowrap;
 }
 
 #ccf-entries-table th {
-	padding-top: 12px;
-	padding-bottom: 12px;
 	text-align: left;
 	background-color: #5e5e5e;
 	color: white;
 }
 
-#ccf-entries-table tr:nth-child(even) {
-	background-color: #f2f2f2;
+#ccf-entries-table tr {
+	background-color: white;
 }
 
-#ccf-entries-table tr:hover {
-	background-color: #ddd;
+#ccf-entries-table tr.ccf-entry-row:hover {
+	background-color: #fafafa;
+	cursor: pointer;
 }
 
 #ccf-pagination-nav {
+	margin-top: 1em;
 	list-style-type: none;
 	padding: 0;
 }
@@ -55,8 +69,7 @@
 }
 
 #ccf-pagination-nav .ccf-nav-active {
-	font-size: larger;
-	font-weight: 800;
+	font-weight: bold;
 }
 
 #ccf-pagination-nav .ccf-nav-active:hover {

@@ -164,6 +164,7 @@ class Codeable_Custom_Form_Public {
 				'form-title'          => __( 'Submit your feedback', 'codeable-custom-form' ),
 				'submit-button-label' => __( 'Submit Enquiry', 'codeable-custom-form' ),
 				'thank-you-message'   => __( 'Thank you for sending us your feedback!', 'codeable-custom-form' ),
+				'form-width'          => '100%',
 			),
 			$atts
 		);
@@ -191,29 +192,29 @@ class Codeable_Custom_Form_Public {
 			<div class="ccf-error">
 				<p><?php esc_html_e( 'Something went wrong, please try again or contact the site administrator.', 'codeable-custom-form' ); ?></p>
 			</div>
-			<form id="ccf-form" method="post">
+			<form id="ccf-form" method="post" style="width: <?php echo esc_attr( $attributes['form-width'] ); ?>">
 				<h2><?php echo esc_html( $attributes['form-title'] ); ?></h2>
-				<div>
+				<div class="ccf-field-wrapper">
 					<label for="first_name"><?php esc_html_e( 'First Name:', 'codeable-custom-form' ); ?></label>
 					<input type="text" id="first_name" value="<?php echo esc_attr( $first_name ); ?>" required />
 				</div>
-				<div>
+				<div class="ccf-field-wrapper">
 					<label for="last_name"><?php esc_html_e( 'Last Name:', 'codeable-custom-form' ); ?></label>
 					<input type="text" id="last_name" value="<?php echo esc_attr( $last_name ); ?>" required />
 				</div>
-				<div>
+				<div class="ccf-field-wrapper">
 					<label for="email"><?php esc_html_e( 'Email:', 'codeable-custom-form' ); ?></label>
 					<input type="email" id="email" required />
 				</div>
-				<div>
+				<div class="ccf-field-wrapper">
 					<label for="subject"><?php esc_html_e( 'Subject:', 'codeable-custom-form' ); ?></label>
 					<input type="text" id="subject" required />
 				</div>
-				<div>
+				<div class="ccf-field-wrapper">
 					<label for="message"><?php esc_html_e( 'Message:', 'codeable-custom-form' ); ?></label>
 					<textarea id="message" required ></textarea>
 				</div>
-				<div class="">
+				<div class="ccf-field-wrapper">
 					<button type="submit"><?php echo esc_html( $attributes['submit-button-label'] ); ?></button>
 				</div>
 			</form>
