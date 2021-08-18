@@ -121,6 +121,7 @@ class Codeable_Custom_Form_Public {
 	 * Create Shortcode for rendering the form.
 	 *
 	 * @since    1.0.0
+	 * @param    string $atts    The shortcode attributes.
 	 */
 	public function register_ccf_form_shortcode( $atts ) {
 
@@ -131,6 +132,7 @@ class Codeable_Custom_Form_Public {
 	 * Create Shortcode for Users to add the button.
 	 *
 	 * @since    1.0.0
+	 * @param    string $atts    The shortcode attributes.
 	 */
 	public function render_form( $atts ) {
 
