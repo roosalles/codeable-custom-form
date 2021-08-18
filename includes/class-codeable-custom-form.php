@@ -174,7 +174,7 @@ class Codeable_Custom_Form {
 		$this->loader->add_shortcode( 'ccf-form', $plugin_public, 'register_ccf_form_shortcode' );
 		$this->loader->add_shortcode( 'ccf-entries', $plugin_public, 'register_ccf_entries_shortcode' );
 
-		// Save/unsave AJAX.
+		// Submit form AJAX.
 		$this->loader->add_action( 'wp_ajax_ccf_submit_form', $plugin_public, 'submit_form' );
 		$this->loader->add_action( 'wp_ajax_nopriv_ccf_submit_form', $plugin_public, 'submit_form' );
 
