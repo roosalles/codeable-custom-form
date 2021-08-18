@@ -243,7 +243,7 @@ class Codeable_Custom_Form_Public {
 	public function render_entries( $atts ) {
 
 		// Check if user is admin.
-		if ( ! current_user_can( 'manage_options' ) ) {
+		if ( ! in_array( 'administrator', wp_get_current_user()->roles, true ) ) {
 			return '<p>' . __( 'You are not authorized to view the content of this page.', 'codeable-custom-form' ) . '</p>';
 		}
 
