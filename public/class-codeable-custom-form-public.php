@@ -160,6 +160,7 @@ class Codeable_Custom_Form_Public {
 			array(
 				'form-title'          => __( 'Submit your feedback', 'codeable-custom-form' ),
 				'submit-button-label' => __( 'Submit Enquiry', 'codeable-custom-form' ),
+				'thank-you-message'   => __( 'Thank you for sending us your feedback!', 'codeable-custom-form' ),
 			),
 			$atts
 		);
@@ -181,8 +182,14 @@ class Codeable_Custom_Form_Public {
 		ob_start();
 		?>
 		<div class="ccf-wrapper">
-			<h2><?php echo esc_html( $attributes['form-title'] ); ?></h2>
+			<div class="ccf-success">
+				<p><?php echo esc_html( $attributes['thank-you-message'] ); ?></p>
+			</div>
+			<div class="ccf-error">
+				<p><?php esc_html_e( 'Something went wrong, please try again or contact the site administrator.', 'codeable-custom-form' ); ?></p>
+			</div>
 			<form id="ccf-form" method="post">
+				<h2><?php echo esc_html( $attributes['form-title'] ); ?></h2>
 				<div>
 					<label for="first_name"><?php esc_html_e( 'First Name:', 'codeable-custom-form' ); ?></label>
 					<input type="text" id="first_name" value="<?php echo esc_attr( $first_name ); ?>" required />

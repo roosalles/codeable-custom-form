@@ -46,16 +46,12 @@
 				message    : $( '#message' ).val(),
 			},
 			success: function ( response ) {
-				alert("Done!");
+				$( '#ccf-form' ).hide();
+				$( '.ccf-success' ).show();
 			},
-			/*
-			success: function(response){
-				$(".success_msg").css("display","block");
-			}, error: function(data){
-				$(".error_msg").css("display","block");
+			error: function ( response ) {
+				$( '.ccf-error' ).show();
 			}
-			*/
-
 		} );
 	} );
 
