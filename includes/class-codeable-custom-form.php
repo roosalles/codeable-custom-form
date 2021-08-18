@@ -170,6 +170,14 @@ class Codeable_Custom_Form {
 
 		$plugin_public = new Codeable_Custom_Form_Public( $this->get_plugin_name(), $this->get_version() );
 
+		// Add Shortcodes.
+		$this->loader->add_shortcode( 'ccf-form', $plugin_public, 'register_ccf_form_shortcode' );
+		$this->loader->add_shortcode( 'ccf-entries', $plugin_public, 'register_ccf_entries_shortcode' );
+
+		// Save/unsave AJAX.
+		$this->loader->add_action( 'wp_ajax_submit_form', $plugin_public, 'submit_form' );
+		$this->loader->add_action( 'wp_ajax_nopriv_submit_form', $plugin_public, 'submit_form' );
+
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
 

@@ -44,13 +44,13 @@ class Codeable_Custom_Form_Public {
 	 * Initialize the class and set its properties.
 	 *
 	 * @since    1.0.0
-	 * @param      string    $plugin_name       The name of the plugin.
-	 * @param      string    $version    The version of this plugin.
+	 * @param      string $plugin_name       The name of the plugin.
+	 * @param      string $version    The version of this plugin.
 	 */
 	public function __construct( $plugin_name, $version ) {
 
 		$this->plugin_name = $plugin_name;
-		$this->version = $version;
+		$this->version     = $version;
 
 	}
 
@@ -97,6 +97,95 @@ class Codeable_Custom_Form_Public {
 		 */
 
 		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/codeable-custom-form-public.js', array( 'jquery' ), $this->version, false );
+
+		wp_localize_script(
+			$this->plugin_name,
+			'ccfAjaxObject',
+			array(
+				'ajax_url' => admin_url( 'admin-ajax.php' ),
+			)
+		);
+
+	}
+
+	/**
+	 * Handle form submission.
+	 *
+	 * @since    1.0.0
+	 */
+	public function submit_form() {
+
+	}
+
+	/**
+	 * Create Shortcode for rendering the form.
+	 *
+	 * @since    1.0.0
+	 */
+	public function register_ccf_form_shortcode() {
+
+		return $this->render_form();
+	}
+
+	/**
+	 * Create Shortcode for Users to add the button.
+	 *
+	 * @since    1.0.0
+	 */
+	public function render_form() {
+
+		ob_start();
+		?>
+		<div class="ccf-wrapper">
+			<h2>Submit your feedback</h2>
+			<form id="ccf-form" action="#" method="post">
+				<div>
+					<label for="first_name">First Name:</label>
+					<input type="text" name="first_name" />
+				</div>
+				<div>
+					<label for="last_name">Last Name:</label>
+					<input type="text" name="last_name" />
+				</div>
+				<div>
+					<label for="email">E-mail:</label>
+					<input type="email" name="email" />
+				</div>
+				<div>
+					<label for="subject">Subject:</label>
+					<input type="text" name="subject" />
+				</div>
+				<div>
+					<label for="message">Message:</label>
+					<textarea name="message"></textarea>
+				</div>
+				<div class="">
+					<button type="submit">Submit Enquiry</button>
+				</div>
+			</form>
+		</div>
+
+		<?php
+
+		return ob_get_clean();
+	}
+
+	/**
+	 * Create Shortcode for rendering entries.
+	 *
+	 * @since    1.0.0
+	 */
+	public function register_ccf_entries_shortcode() {
+
+		return $this->render_entries();
+	}
+
+	/**
+	 * Create Shortcode for Users to add the button.
+	 *
+	 * @since    1.0.0
+	 */
+	public function render_entries() {
 
 	}
 
