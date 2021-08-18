@@ -155,23 +155,23 @@ class Codeable_Custom_Form_Public {
 			<form id="ccf-form" action="#" method="post">
 				<div>
 					<label for="first_name">First Name:</label>
-					<input type="text" name="first_name" value="<?php echo esc_attr( $first_name ); ?>" />
+					<input type="text" name="first_name" value="<?php echo esc_attr( $first_name ); ?>" required />
 				</div>
 				<div>
 					<label for="last_name">Last Name:</label>
-					<input type="text" name="last_name" value="<?php echo esc_attr( $last_name ); ?>" />
+					<input type="text" name="last_name" value="<?php echo esc_attr( $last_name ); ?>" required />
 				</div>
 				<div>
 					<label for="email">E-mail:</label>
-					<input type="email" name="email" />
+					<input type="email" name="email" required />
 				</div>
 				<div>
 					<label for="subject">Subject:</label>
-					<input type="text" name="subject" />
+					<input type="text" name="subject" required />
 				</div>
 				<div>
 					<label for="message">Message:</label>
-					<textarea name="message"></textarea>
+					<textarea name="message" required ></textarea>
 				</div>
 				<div class="">
 					<button type="submit">Submit Enquiry</button>
