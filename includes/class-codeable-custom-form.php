@@ -178,6 +178,10 @@ class Codeable_Custom_Form {
 		$this->loader->add_action( 'wp_ajax_ccf_submit_form', $plugin_public, 'submit_form' );
 		$this->loader->add_action( 'wp_ajax_nopriv_ccf_submit_form', $plugin_public, 'submit_form' );
 
+		// Load entries AJAX.
+		$this->loader->add_action( 'wp_ajax_ccf_load_entries_ajax', $plugin_public, 'load_entries_ajax' );
+		$this->loader->add_action( 'wp_ajax_nopriv_ccf_load_entries_ajax', $plugin_public, 'load_entries_ajax' );
+
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
 

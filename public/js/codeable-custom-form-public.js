@@ -29,31 +29,64 @@
 	 * practising this, we should strive to set a better example in our own work.
 	 */
 
-	// Handle form submit event.
-	$( document ).on('submit','#ccf-form', function( e ) {
-		e.preventDefault();
+	// On document.ready..
+	$( function() {
 
-		// AJAX Call to save a new enquiry.
-		$.ajax( {
-			type: 'post',
-			url: ccfAjaxObject.ajax_url,
-			data: {
-				action     : 'ccf_submit_form',
-				nonce      : ccfAjaxObject.ajax_nonce,
-				first_name : $( '#first_name' ).val(),
-				last_name  : $( '#last_name' ).val(),
-				email      : $( '#email' ).val(),
-				subject    : $( '#subject' ).val(),
-				message    : $( '#message' ).val(),
-			},
-			success: function ( response ) {
-				$( '#ccf-form' ).hide();
-				$( '.ccf-success' ).show();
-			},
-			error: function ( response ) {
-				$( '.ccf-error' ).show();
-			}
+		// Handle form submit event.
+		$( '#ccf-form' ).on('submit', function( e ) {
+			e.preventDefault();
+
+			// AJAX Call to save a new enquiry.
+			$.ajax( {
+				type: 'post',
+				url: ccfAjaxObject.ajax_url,
+				data: {
+					action     : 'ccf_submit_form',
+					nonce      : ccfAjaxObject.ajax_nonce,
+					first_name : $( '#first_name' ).val(),
+					last_name  : $( '#last_name' ).val(),
+					email      : $( '#email' ).val(),
+					subject    : $( '#subject' ).val(),
+					message    : $( '#message' ).val(),
+				},
+				success: function ( response ) {
+					$( '#ccf-form' ).hide();
+					$( '.ccf-success' ).show();
+				},
+				error: function ( response ) {
+					$( '.ccf-error' ).show();
+				}
+			} );
 		} );
+
+		// Handle pagination links clicks.
+		$( '#ccf-pagination-nav li' ).on( 'click', function() {
+
+			if ( $( this ).hasClass( 'ccf-nav-active' ) ) {
+				return;
+			} else {
+				$( '#ccf-pagination-nav li' ).removeClass( 'ccf-nav-active' );
+				$( this ).addClass( 'ccf-nav-active' );
+			}
+
+			// AJAX Call to load entries for pagination.
+			$.ajax( {
+				type: 'post',
+				url: ccfAjaxObject.ajax_url,
+				data: {
+					action           : 'ccf_load_entries_ajax',
+					nonce            : ccfAjaxObject.ajax_nonce,
+					page             : $( this ).data( 'page' ),
+					entries_per_page : $( '#ccf-pagination-nav' ).data( 'entries-per-page' ),
+				},
+				success: function ( response ) {
+					console.log( response.entriesHTML );
+					$( '.ccf-entry-row' ).remove();
+					$( '#ccf-entries-table tbody' ).append( response.entriesHTML );
+				}
+			} );
+		} );
+
 	} );
 
 } )( jQuery );

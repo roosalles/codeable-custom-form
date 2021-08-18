@@ -264,23 +264,118 @@ class Codeable_Custom_Form_Public {
 					<th>E-mail</th>
 					<th>Subject</th>
 				</tr>
-				<tr>
-					<td>Alfred</td>
-					<td>Anders</td>
-					<td>info@info.com</td>
-					<td>Question!</td>
-				</tr>
-				<tr>
-					<td>Anotherlfred</td>
-					<td>Anderssim</td>
-					<td>info@informatic.com</td>
-					<td>Question another!</td>
-				</tr>
+				<?php $this->load_entries( 1, $attributes['entries-per-page'] ); ?>
 			</table>
+			<?php $this->render_pagination_nav( $attributes['entries-per-page'] ); ?>
 		</div>
 		<?php
 
 		return ob_get_clean();
+	}
+
+	/**
+	 * Load form entries from the database (AJAX Call).
+	 *
+	 * @since    1.0.0
+	 */
+	public function load_entries_ajax() {
+
+		check_ajax_referer( 'ccf_nonce', 'nonce' );
+
+		$page             = $_POST['page'];
+		$entries_per_page = $_POST['entries_per_page'];
+
+		ob_start();
+		$this->load_entries( $page, $entries_per_page );
+
+		$entries_html = ob_get_clean();
+
+		$ajax_response = array(
+			'entriesHTML' => $entries_html,
+		);
+
+		wp_send_json( $ajax_response );
+	}
+
+	/**
+	 * Load form entries from the database.
+	 *
+	 * @since    1.0.0
+	 * @param    string $page                The page to be loaded.
+	 * @param    string $entries_per_page    The number of entries to load per page..
+	 */
+	public function load_entries( $page, $entries_per_page ) {
+
+		$my_sql_index = $page - 1;
+		// $previous_btn = true;
+		// $next_btn     = true;
+		// $first_btn    = true;
+		// $last_btn     = true;
+		$start_index = $my_sql_index * $entries_per_page;
+
+		global $wpdb;
+		$table_name = $wpdb->prefix . 'codeable_form_entries';
+
+		// Query entries.
+		$sql     = $wpdb->prepare( "SELECT * FROM $table_name ORDER BY submission_date DESC LIMIT %d, %d", $start_index, $entries_per_page );
+		$entries = $wpdb->get_results( $sql );
+
+		$this->render_entries( $entries );
+	}
+
+	/**
+	 * Create the HTML content for entries.
+	 *
+	 * @since    1.0.0
+	 * @param    object $entries    The array of entries to be rendered on the table.
+	 */
+	public function render_entries( $entries ) {
+
+		ob_start();
+
+		// Loop all entries.
+		foreach ( $entries as $entry ) :
+			?>
+			<tr class="ccf-entry-row" data-entry-id="<?php echo esc_attr( $entry->id ); ?>">
+				<td><?php echo esc_html( $entry->first_name ); ?></td>
+				<td><?php echo esc_html( $entry->last_name ); ?></td>
+				<td><?php echo esc_html( $entry->email ); ?></td>
+				<td><?php echo esc_html( $entry->subject ); ?></td>
+			</tr>
+			<?php
+		endforeach;
+
+		echo ob_get_clean();
+	}
+
+	/**
+	 * Render pagination nav.
+	 *
+	 * @since    1.0.0
+	 * @param    integer $entries_per_page    The number of entries to display per page.
+	 */
+	public function render_pagination_nav( $entries_per_page ) {
+
+		global $wpdb;
+		$table_name = $wpdb->prefix . 'codeable_form_entries';
+
+		$count = $wpdb->get_var(
+			$wpdb->prepare( "SELECT COUNT(id) FROM $table_name" )
+		);
+
+		$total_pages = ceil( $count / $entries_per_page );
+
+		ob_start();
+		?>
+		<div id="ccf-pagination-nav-wrapper">
+			<ul id="ccf-pagination-nav" data-entries-per-page="<?php echo esc_attr( $entries_per_page ); ?>">
+				<?php for ( $i = 1; $i <= $total_pages; $i++ ) : ?>
+					<li class="<?php echo $i == 1 ? 'ccf-nav-active' : ''; ?>" data-page="<?php echo esc_attr( $i ); ?>"><?php echo esc_html( $i ); ?></li>
+				<?php endfor; ?>
+			</ul>
+		</div>
+		<?php
+		echo ob_get_clean();
 	}
 
 }

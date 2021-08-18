@@ -39,3 +39,26 @@
 #ccf-entries-table tr:hover {
 	background-color: #ddd;
 }
+
+#ccf-pagination-nav {
+	list-style-type: none;
+	padding: 0;
+}
+
+#ccf-pagination-nav li {
+	display: inline-block;
+	margin: 0 10px;
+}
+
+#ccf-pagination-nav li:hover {
+	cursor: pointer;
+}
+
+#ccf-pagination-nav .ccf-nav-active {
+	font-size: larger;
+	font-weight: 800;
+}
+
+#ccf-pagination-nav .ccf-nav-active:hover {
+	cursor: default;
+}
