@@ -182,30 +182,31 @@ class Codeable_Custom_Form_Public {
 		?>
 		<div class="ccf-wrapper">
 			<h2><?php echo esc_html( $attributes['form-title'] ); ?></h2>
-			<form id="ccf-form" action="#" method="post">
+			<form id="ccf-form" method="post">
 				<div>
 					<label for="first_name"><?php esc_html_e( 'First Name:', 'codeable-custom-form' ); ?></label>
-					<input type="text" name="first_name" value="<?php echo esc_attr( $first_name ); ?>" required />
+					<input type="text" id="first_name" value="<?php echo esc_attr( $first_name ); ?>" required />
 				</div>
 				<div>
 					<label for="last_name"><?php esc_html_e( 'Last Name:', 'codeable-custom-form' ); ?></label>
-					<input type="text" name="last_name" value="<?php echo esc_attr( $last_name ); ?>" required />
+					<input type="text" id="last_name" value="<?php echo esc_attr( $last_name ); ?>" required />
 				</div>
 				<div>
-					<label for="email"><?php esc_html_e( 'Last Name:', 'codeable-custom-form' ); ?></label>
-					<input type="email" name="email" required />
+					<label for="email"><?php esc_html_e( 'Email:', 'codeable-custom-form' ); ?></label>
+					<input type="email" id="email" required />
 				</div>
 				<div>
 					<label for="subject"><?php esc_html_e( 'Subject:', 'codeable-custom-form' ); ?></label>
-					<input type="text" name="subject" required />
+					<input type="text" id="subject" required />
 				</div>
 				<div>
 					<label for="message"><?php esc_html_e( 'Message:', 'codeable-custom-form' ); ?></label>
-					<textarea name="message" required ></textarea>
+					<textarea id="message" required ></textarea>
 				</div>
 				<div class="">
 					<button type="submit"><?php echo esc_html( $attributes['submit-button-label'] ); ?></button>
 				</div>
+				<?php wp_nonce_field( 'ccf_nonce' ); ?>
 			</form>
 		</div>
 
