@@ -231,7 +231,7 @@ class Codeable_Custom_Form_Public {
 	 */
 	public function register_ccf_entries_shortcode( $atts ) {
 
-		return $this->render_entries( $atts );
+		return $this->render_entries_table( $atts );
 	}
 
 	/**
@@ -240,7 +240,7 @@ class Codeable_Custom_Form_Public {
 	 * @since    1.0.0
 	 * @param    string $atts    The shortcode attributes.
 	 */
-	public function render_entries( $atts ) {
+	public function render_entries_table( $atts ) {
 
 		// Check if user is admin.
 		if ( ! in_array( 'administrator', wp_get_current_user()->roles, true ) ) {
