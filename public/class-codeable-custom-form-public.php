@@ -227,19 +227,60 @@ class Codeable_Custom_Form_Public {
 	 * Create Shortcode for rendering entries.
 	 *
 	 * @since    1.0.0
+	 * @param    string $atts    The shortcode attributes.
 	 */
-	public function register_ccf_entries_shortcode() {
+	public function register_ccf_entries_shortcode( $atts ) {
 
-		return $this->render_entries();
+		return $this->render_entries( $atts );
 	}
 
 	/**
 	 * Create Shortcode for Users to add the button.
 	 *
 	 * @since    1.0.0
+	 * @param    string $atts    The shortcode attributes.
 	 */
-	public function render_entries() {
+	public function render_entries( $atts ) {
 
+		// Check if user is admin.
+		if ( ! current_user_can( 'manage_options' ) ) {
+			return '<p>' . __( 'You are not authorized to view the content of this page.', 'codeable-custom-form' ) . '</p>';
+		}
+
+		$attributes = shortcode_atts(
+			array(
+				'entries-per-page' => 10,
+			),
+			$atts
+		);
+
+		ob_start();
+		?>
+		<div class="ccf-entries-wrapper">
+			<table id="ccf-entries-table">
+				<tr>
+					<th>First Name</th>
+					<th>Last Name</th>
+					<th>E-mail</th>
+					<th>Subject</th>
+				</tr>
+				<tr>
+					<td>Alfred</td>
+					<td>Anders</td>
+					<td>info@info.com</td>
+					<td>Question!</td>
+				</tr>
+				<tr>
+					<td>Anotherlfred</td>
+					<td>Anderssim</td>
+					<td>info@informatic.com</td>
+					<td>Question another!</td>
+				</tr>
+			</table>
+		</div>
+		<?php
+
+		return ob_get_clean();
 	}
 
 }
