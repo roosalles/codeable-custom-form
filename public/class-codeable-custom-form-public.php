@@ -118,6 +118,10 @@ class Codeable_Custom_Form_Public {
 
 		check_ajax_referer( 'ccf_nonce', 'nonce' );
 
+		if ( empty( $_POST['first_name'] ) || empty( $_POST['last_name'] ) || empty( $_POST['email'] ) || empty( $_POST['subject'] ) || empty( $_POST['message'] ) ) {
+			wp_die();
+		}
+
 		$first_name = $_POST['first_name'];
 		$last_name  = $_POST['last_name'];
 		$email      = $_POST['email'];
