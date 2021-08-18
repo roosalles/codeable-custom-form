@@ -102,7 +102,8 @@ class Codeable_Custom_Form_Public {
 			$this->plugin_name,
 			'ccfAjaxObject',
 			array(
-				'ajax_url' => admin_url( 'admin-ajax.php' ),
+				'ajax_url'   => admin_url( 'admin-ajax.php' ),
+				'ajax_nonce' => wp_create_nonce( 'ccf_nonce' ),
 			)
 		);
 
@@ -114,6 +115,8 @@ class Codeable_Custom_Form_Public {
 	 * @since    1.0.0
 	 */
 	public function submit_form() {
+
+		check_ajax_referer( 'ccf_nonce', 'nonce' );
 
 		$first_name = $_POST['first_name'];
 		$last_name  = $_POST['last_name'];
@@ -213,7 +216,6 @@ class Codeable_Custom_Form_Public {
 				<div class="">
 					<button type="submit"><?php echo esc_html( $attributes['submit-button-label'] ); ?></button>
 				</div>
-				<?php wp_nonce_field( 'ccf_nonce' ); ?>
 			</form>
 		</div>
 

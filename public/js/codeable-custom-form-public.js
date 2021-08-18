@@ -39,6 +39,7 @@
 			url: ccfAjaxObject.ajax_url,
 			data: {
 				action     : 'ccf_submit_form',
+				nonce      : ccfAjaxObject.ajax_nonce,
 				first_name : $( '#first_name' ).val(),
 				last_name  : $( '#last_name' ).val(),
 				email      : $( '#email' ).val(),
