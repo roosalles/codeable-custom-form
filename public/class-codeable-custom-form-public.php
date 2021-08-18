@@ -122,9 +122,9 @@ class Codeable_Custom_Form_Public {
 	 *
 	 * @since    1.0.0
 	 */
-	public function register_ccf_form_shortcode() {
+	public function register_ccf_form_shortcode( $atts ) {
 
-		return $this->render_form();
+		return $this->render_form( $atts );
 	}
 
 	/**
@@ -132,7 +132,15 @@ class Codeable_Custom_Form_Public {
 	 *
 	 * @since    1.0.0
 	 */
-	public function render_form() {
+	public function render_form( $atts ) {
+
+		$attributes = shortcode_atts(
+			array(
+				'form-title'          => __( 'Submit your feedback', 'codeable-custom-form' ),
+				'submit-button-label' => __( 'Submit Enquiry', 'codeable-custom-form' ),
+			),
+			$atts
+		);
 
 		$first_name = '';
 		$last_name  = '';
@@ -151,30 +159,30 @@ class Codeable_Custom_Form_Public {
 		ob_start();
 		?>
 		<div class="ccf-wrapper">
-			<h2>Submit your feedback</h2>
+			<h2><?php echo esc_html( $attributes['form-title'] ); ?></h2>
 			<form id="ccf-form" action="#" method="post">
 				<div>
-					<label for="first_name">First Name:</label>
+					<label for="first_name"><?php esc_html_e( 'First Name:', 'codeable-custom-form' ); ?></label>
 					<input type="text" name="first_name" value="<?php echo esc_attr( $first_name ); ?>" required />
 				</div>
 				<div>
-					<label for="last_name">Last Name:</label>
+					<label for="last_name"><?php esc_html_e( 'Last Name:', 'codeable-custom-form' ); ?></label>
 					<input type="text" name="last_name" value="<?php echo esc_attr( $last_name ); ?>" required />
 				</div>
 				<div>
-					<label for="email">E-mail:</label>
+					<label for="email"><?php esc_html_e( 'Last Name:', 'codeable-custom-form' ); ?></label>
 					<input type="email" name="email" required />
 				</div>
 				<div>
-					<label for="subject">Subject:</label>
+					<label for="subject"><?php esc_html_e( 'Subject:', 'codeable-custom-form' ); ?></label>
 					<input type="text" name="subject" required />
 				</div>
 				<div>
-					<label for="message">Message:</label>
+					<label for="message"><?php esc_html_e( 'Message:', 'codeable-custom-form' ); ?></label>
 					<textarea name="message" required ></textarea>
 				</div>
 				<div class="">
-					<button type="submit">Submit Enquiry</button>
+					<button type="submit"><?php echo esc_html( $attributes['submit-button-label'] ); ?></button>
 				</div>
 			</form>
 		</div>
