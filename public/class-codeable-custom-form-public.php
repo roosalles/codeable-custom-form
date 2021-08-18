@@ -130,12 +130,12 @@ class Codeable_Custom_Form_Public {
 		$wpdb->insert(
 			$table_name,
 			array(
-				'time'       => gmdate( 'Y-m-d H:i:s' ),
-				'first_name' => $first_name,
-				'last_name'  => $last_name,
-				'email'      => $email,
-				'subject'    => $subject,
-				'message'    => $message,
+				'submission_date' => gmdate( 'Y-m-d H:i:s' ),
+				'first_name'      => $first_name,
+				'last_name'       => $last_name,
+				'email'           => $email,
+				'subject'         => $subject,
+				'message'         => $message,
 			)
 		);
 	}
