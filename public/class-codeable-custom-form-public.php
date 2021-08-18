@@ -134,6 +134,20 @@ class Codeable_Custom_Form_Public {
 	 */
 	public function render_form() {
 
+		$first_name = '';
+		$last_name  = '';
+
+		if ( is_user_logged_in() ) {
+
+			$current_user = wp_get_current_user();
+			if ( ! $current_user->exists() ) {
+				return;
+			}
+
+			$first_name = $current_user->user_firstname;
+			$last_name  = $current_user->user_lastname;
+		}
+
 		ob_start();
 		?>
 		<div class="ccf-wrapper">
@@ -141,11 +155,11 @@ class Codeable_Custom_Form_Public {
 			<form id="ccf-form" action="#" method="post">
 				<div>
 					<label for="first_name">First Name:</label>
-					<input type="text" name="first_name" />
+					<input type="text" name="first_name" value="<?php echo esc_attr( $first_name ); ?>" />
 				</div>
 				<div>
 					<label for="last_name">Last Name:</label>
-					<input type="text" name="last_name" />
+					<input type="text" name="last_name" value="<?php echo esc_attr( $last_name ); ?>" />
 				</div>
 				<div>
 					<label for="email">E-mail:</label>
