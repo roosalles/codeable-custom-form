@@ -39,7 +39,7 @@ class Codeable_Custom_Form_Activator {
 
 		$sql = "CREATE TABLE $table_name (
 				id mediumint(9) NOT NULL AUTO_INCREMENT,
-				time datetime DEFAULT '0000-00-00 00:00:00' NOT NULL,
+				submission_date datetime NOT NULL,
 				first_name tinytext NOT NULL,
 				last_name tinytext NOT NULL,
 				email tinytext NOT NULL,
