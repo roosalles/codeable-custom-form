@@ -1,4 +1,4 @@
-(function( $ ) {
+( function( $ ) {
 	'use strict';
 
 	/**
@@ -29,4 +29,34 @@
 	 * practising this, we should strive to set a better example in our own work.
 	 */
 
-})( jQuery );
+	// Handle form submit event.
+	$( document ).on('submit','#ccf-form', function( e ) {
+		e.preventDefault();
+
+		// AJAX Call to save a new enquiry.
+		$.ajax( {
+			type: 'post',
+			url: ccfAjaxObject.ajax_url,
+			data: {
+				action     : 'ccf_submit_form',
+				first_name : $( '#first_name' ).val(),
+				last_name  : $( '#last_name' ).val(),
+				email      : $( '#email' ).val(),
+				subject    : $( '#subject' ).val(),
+				message    : $( '#message' ).val(),
+			},
+			success: function ( response ) {
+				alert("Done!");
+			},
+			/*
+			success: function(response){
+				$(".success_msg").css("display","block");
+			}, error: function(data){
+				$(".error_msg").css("display","block");
+			}
+			*/
+
+		} );
+	} );
+
+} )( jQuery );
