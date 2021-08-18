@@ -115,6 +115,26 @@ class Codeable_Custom_Form_Public {
 	 */
 	public function submit_form() {
 
+		$first_name = $_POST['first_name'];
+		$last_name  = $_POST['last_name'];
+		$email      = $_POST['email'];
+		$subject    = $_POST['subject'];
+		$message    = $_POST['message'];
+
+		global $wpdb;
+		$table_name = $wpdb->prefix . 'codeable_form_entries';
+
+		$wpdb->insert(
+			$table_name,
+			array(
+				'time'       => gmdate( 'Y-m-d H:i:s' ),
+				'first_name' => $first_name,
+				'last_name'  => $last_name,
+				'email'      => $email,
+				'subject'    => $subject,
+				'message'    => $message,
+			)
+		);
 	}
 
 	/**
