@@ -184,7 +184,7 @@ class Codeable_Custom_Form_Public {
 
 		ob_start();
 		?>
-		<div class="ccf-wrapper">
+		<div class="ccf-form-wrapper">
 			<div class="ccf-success">
 				<p><?php echo esc_html( $attributes['thank-you-message'] ); ?></p>
 			</div>
@@ -218,7 +218,6 @@ class Codeable_Custom_Form_Public {
 				</div>
 			</form>
 		</div>
-
 		<?php
 
 		return ob_get_clean();

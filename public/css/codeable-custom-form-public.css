@@ -3,12 +3,12 @@
  * included in this file.
  */
 
-.ccf-wrapper .ccf-success {
+.ccf-form-wrapper .ccf-success {
 	display: none;
 	color: green;
 }
 
-.ccf-wrapper .ccf-error {
+.ccf-form-wrapper .ccf-error {
 	display: none;
 	color: red;
 }
