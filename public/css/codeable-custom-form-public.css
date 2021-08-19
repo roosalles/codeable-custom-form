@@ -3,17 +3,21 @@
  * included in this file.
  */
 
-.ccf-form-wrapper .ccf-success {
+.ccf-form-wrapper .ccf-success,
+.ccf-form-wrapper .ccf-error {
 	display: none;
+}
+
+.ccf-form-wrapper .ccf-success p {
 	color: green;
 }
 
-.ccf-form-wrapper .ccf-error {
-	display: none;
+.ccf-form-wrapper .ccf-error p {
 	color: red;
 }
 
-#ccf-form input {
+#ccf-form input,
+#ccf-form textarea {
 	width: 100%;
 }
 
@@ -30,15 +34,19 @@
 	width: 100%;
 }
 
+#ccf-entries-table tbody {
+	border: 1px solid #ccc;
+}
+
 #ccf-entries-table td,
 #ccf-entries-table th {
+	text-align: left;
 	padding: 12px;
 	width: 25%;
 	white-space: nowrap;
 }
 
 #ccf-entries-table th {
-	text-align: left;
 	background-color: #5e5e5e;
 	color: white;
 }
@@ -75,7 +83,12 @@
 	cursor: default;
 }
 
+#ccf-entry-details-table tbody {
+	border: 1px solid #ccc;
+}
+
 #ccf-entry-details-table .ccf-entry-details-table-header th {
+	padding: 12px;
 	text-align: center;
 	background-color: gainsboro;
 	position: relative;
@@ -92,5 +105,12 @@
 
 #ccf-entry-details-table .ccf-entry-detail-row th {
 	width: 25%;
+	padding: 12px;
 	vertical-align: baseline;
+	text-align: right;
+}
+
+#ccf-entry-details-table .ccf-entry-detail-row td {
+	text-align: left;
+	padding: 12px;
 }

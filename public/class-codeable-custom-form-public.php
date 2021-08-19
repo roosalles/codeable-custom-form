@@ -226,7 +226,7 @@ class Codeable_Custom_Form_Public {
 				</div>
 				<div class="ccf-field-wrapper">
 					<label for="message"><?php esc_html_e( 'Message:', 'codeable-custom-form' ); ?></label>
-					<textarea id="message" required ></textarea>
+					<textarea id="message" rows="6" required ></textarea>
 				</div>
 				<div class="ccf-field-wrapper">
 					<button type="submit"><?php echo esc_html( $attributes['submit-button-label'] ); ?></button>
