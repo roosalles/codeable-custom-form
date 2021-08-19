@@ -274,10 +274,16 @@ class Codeable_Custom_Form_Public {
 
 		$attributes['entries-per-page'] = intval( $attributes['entries-per-page'] );
 
-		// Prevent users from setting invalid "Entries per page" values (lower than 1 or non-integers).
+		// Prevent users from setting invalid "entries-per-page" values (lower than 1 or non-integers).
 		// Set default value to 10.
 		if ( $attributes['entries-per-page'] < 1 ) {
 			$attributes['entries-per-page'] = 10;
+		}
+
+		// Prevent users from setting invalid "entries-order" values (different than ASC or DESC).
+		// Set default value to DESC.
+		if ( 'DESC' != $attributes['entries-order'] && 'ASC' != $attributes['entries-order'] ) {
+			$attributes['entries-order'] = 'DESC';
 		}
 
 		ob_start();
