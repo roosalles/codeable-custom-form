@@ -34,7 +34,7 @@ class Codeable_Custom_Form_Activator {
 		// Create DB Table for custom form entries.
 		global $wpdb;
 
-		$table_name      = $wpdb->prefix . 'codeable_form_entries';
+		$table_name      = CODEABLE_CUSTOM_FORM_TABLE_NAME;
 		$charset_collate = $wpdb->get_charset_collate();
 
 		$sql = "CREATE TABLE $table_name (

@@ -38,6 +38,12 @@ if ( ! defined( 'WPINC' ) ) {
 define( 'CODEABLE_CUSTOM_FORM_VERSION', '1.0.0' );
 
 /**
+ * DB Table name use for storing form entries.
+ */
+global $wpdb;
+define( 'CODEABLE_CUSTOM_FORM_TABLE_NAME', $wpdb->prefix . 'codeable_custom_form_entries' );
+
+/**
  * The code that runs during plugin activation.
  * This action is documented in includes/class-codeable-custom-form-activator.php
  */

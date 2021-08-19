@@ -41,16 +41,26 @@ class Codeable_Custom_Form_Public {
 	private $version;
 
 	/**
+	 * The DB table name used for form entries.
+	 *
+	 * @since    1.0.0
+	 * @access   private
+	 * @var      string    $table_name    The DB table name used for form entries.
+	 */
+	private $table_name;
+
+	/**
 	 * Initialize the class and set its properties.
 	 *
 	 * @since    1.0.0
 	 * @param      string $plugin_name       The name of the plugin.
 	 * @param      string $version    The version of this plugin.
 	 */
-	public function __construct( $plugin_name, $version ) {
+	public function __construct( $plugin_name, $version, $table_name ) {
 
 		$this->plugin_name = $plugin_name;
 		$this->version     = $version;
+		$this->table_name  = $table_name;
 
 	}
 
@@ -129,10 +139,9 @@ class Codeable_Custom_Form_Public {
 		$message    = $_POST['message'];
 
 		global $wpdb;
-		$table_name = $wpdb->prefix . 'codeable_form_entries';
 
 		$wpdb->insert(
-			$table_name,
+			$this->table_name,
 			array(
 				'submission_date' => gmdate( 'Y-m-d H:i:s' ),
 				'first_name'      => $first_name,
@@ -321,10 +330,9 @@ class Codeable_Custom_Form_Public {
 		$start_index  = $my_sql_index * $entries_per_page;
 
 		global $wpdb;
-		$table_name = $wpdb->prefix . 'codeable_form_entries';
 
 		// Query entries.
-		$sql     = $wpdb->prepare( "SELECT * FROM $table_name ORDER BY submission_date DESC LIMIT %d, %d", $start_index, $entries_per_page );
+		$sql     = $wpdb->prepare( "SELECT * FROM {$this->table_name} ORDER BY submission_date DESC LIMIT %d, %d", $start_index, $entries_per_page );
 		$entries = $wpdb->get_results( $sql );
 
 		$this->render_entries( $entries );
@@ -341,10 +349,9 @@ class Codeable_Custom_Form_Public {
 		$entry_id = $_POST['entry_id'];
 
 		global $wpdb;
-		$table_name = $wpdb->prefix . 'codeable_form_entries';
 
 		// Query entries.
-		$sql     = $wpdb->prepare( "SELECT * FROM $table_name WHERE id = %d", $entry_id );
+		$sql     = $wpdb->prepare( "SELECT * FROM {$this->table_name} WHERE id = %d", $entry_id );
 		$entries = $wpdb->get_results( $sql );
 		$entry   = $entries[0];
 
@@ -418,10 +425,9 @@ class Codeable_Custom_Form_Public {
 	public function render_pagination_nav( $entries_per_page ) {
 
 		global $wpdb;
-		$table_name = $wpdb->prefix . 'codeable_form_entries';
 
 		$count = $wpdb->get_var(
-			$wpdb->prepare( "SELECT COUNT(id) FROM $table_name" )
+			$wpdb->prepare( "SELECT COUNT(id) FROM {$this->table_name}" )
 		);
 
 		$total_pages = ceil( $count / $entries_per_page );

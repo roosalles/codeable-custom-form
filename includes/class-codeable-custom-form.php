@@ -58,6 +58,15 @@ class Codeable_Custom_Form {
 	protected $version;
 
 	/**
+	 * The DB table used for storing form entries.
+	 *
+	 * @since    1.0.0
+	 * @access   protected
+	 * @var      string    $table_name    The DB table used for entries.
+	 */
+	protected $table_name;
+
+	/**
 	 * Define the core functionality of the plugin.
 	 *
 	 * Set the plugin name and the plugin version that can be used throughout the plugin.
@@ -73,6 +82,7 @@ class Codeable_Custom_Form {
 			$this->version = '1.0.0';
 		}
 		$this->plugin_name = 'codeable-custom-form';
+		$this->table_name  = CODEABLE_CUSTOM_FORM_TABLE_NAME;
 
 		$this->load_dependencies();
 		$this->set_locale();
@@ -168,7 +178,7 @@ class Codeable_Custom_Form {
 	 */
 	private function define_public_hooks() {
 
-		$plugin_public = new Codeable_Custom_Form_Public( $this->get_plugin_name(), $this->get_version() );
+		$plugin_public = new Codeable_Custom_Form_Public( $this->get_plugin_name(), $this->get_version(), $this->get_table_name() );
 
 		// Add Shortcodes.
 		$this->loader->add_shortcode( 'ccf-form', $plugin_public, 'register_ccf_form_shortcode' );
@@ -229,6 +239,16 @@ class Codeable_Custom_Form {
 	 */
 	public function get_version() {
 		return $this->version;
+	}
+
+	/**
+	 * Retrieve the DB table name for form entries.
+	 *
+	 * @since     1.0.0
+	 * @return    string    The DB table name used for storing entries.
+	 */
+	public function get_table_name() {
+		return $this->table_name;
 	}
 
 }
