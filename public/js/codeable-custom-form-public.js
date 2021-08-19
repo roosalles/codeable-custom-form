@@ -77,7 +77,8 @@
 					action           : 'ccf_load_entries_ajax',
 					nonce            : ccfAjaxObject.ajax_nonce,
 					page             : $( this ).data( 'page' ),
-					entries_per_page : $( '#ccf-pagination-nav' ).data( 'entries-per-page' ),
+					entries_per_page : $( '#ccf-entries-table' ).data( 'entries-per-page' ),
+					entries_order    : $( '#ccf-entries-table' ).data( 'entries-order' ),
 				},
 				success: function ( response ) {
 					$( '.ccf-entry-row' ).remove();

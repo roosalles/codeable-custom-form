@@ -272,10 +272,22 @@ class Codeable_Custom_Form_Public {
 			$atts
 		);
 
+		$attributes['entries-per-page'] = intval( $attributes['entries-per-page'] );
+
+		// Prevent users from setting invalid "Entries per page" values (lower than 1).
+		// Set default value to 10.
+		if ( $attributes['entries-per-page'] < 1 ) {
+			$attributes['entries-per-page'] = 10;
+		}
+
 		ob_start();
 		?>
 		<div class="ccf-entries-wrapper">
-			<table id="ccf-entries-table">
+			<table
+				id="ccf-entries-table"
+				data-entries-per-page="<?php echo esc_attr( $attributes['entries-per-page'] ); ?>"
+				data-entries-order="<?php echo esc_attr( $attributes['entries-order'] ); ?>"
+				>
 				<tr>
 					<th><?php esc_html_e( 'First Name', 'codeable-custom-form' ); ?></th>
 					<th><?php esc_html_e( 'Last Name', 'codeable-custom-form' ); ?></th>
@@ -304,9 +316,10 @@ class Codeable_Custom_Form_Public {
 
 		$page             = $_POST['page'];
 		$entries_per_page = $_POST['entries_per_page'];
+		$entries_order    = $_POST['entries_order'];
 
 		ob_start();
-		$this->load_entries( $page, $entries_per_page );
+		$this->load_entries( $page, $entries_per_page, $entries_order );
 
 		$entries_html = ob_get_clean();
 
@@ -441,7 +454,7 @@ class Codeable_Custom_Form_Public {
 		ob_start();
 		?>
 		<div id="ccf-pagination-nav-wrapper">
-			<ul id="ccf-pagination-nav" data-entries-per-page="<?php echo esc_attr( $entries_per_page ); ?>">
+			<ul id="ccf-pagination-nav">
 				<?php for ( $i = 1; $i <= $total_pages; $i++ ) : ?>
 					<li class="<?php echo $i == 1 ? 'ccf-nav-active' : ''; ?>" data-page="<?php echo esc_attr( $i ); ?>"><?php echo esc_html( $i ); ?></li>
 				<?php endfor; ?>
