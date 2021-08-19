@@ -92,4 +92,5 @@
 
 #ccf-entry-details-table .ccf-entry-detail-row th {
 	width: 25%;
+	vertical-align: baseline;
 }
