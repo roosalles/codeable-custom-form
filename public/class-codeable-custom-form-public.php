@@ -432,6 +432,11 @@ class Codeable_Custom_Form_Public {
 
 		$total_pages = ceil( $count / $entries_per_page );
 
+		// Don't display pagination if there's only one page to show.
+		if ( 1 == $total_pages ) {
+			return;
+		}
+
 		ob_start();
 		?>
 		<div id="ccf-pagination-nav-wrapper">
