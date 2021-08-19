@@ -217,7 +217,7 @@ class Codeable_Custom_Form_Public {
 					<input type="text" id="last_name" value="<?php echo esc_attr( $last_name ); ?>" required />
 				</div>
 				<div class="ccf-field-wrapper">
-					<label for="email"><?php esc_html_e( 'Email:', 'codeable-custom-form' ); ?></label>
+					<label for="email"><?php esc_html_e( 'E-mail:', 'codeable-custom-form' ); ?></label>
 					<input type="email" id="email" required />
 				</div>
 				<div class="ccf-field-wrapper">
