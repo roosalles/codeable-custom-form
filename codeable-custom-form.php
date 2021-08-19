@@ -15,7 +15,7 @@
  * @wordpress-plugin
  * Plugin Name:       Codeable Custom Form
  * Plugin URI:        https://codeable.com
- * Description:       This is a short description of what the plugin does. It's displayed in the WordPress admin area.
+ * Description:       Basic plugin to display custom form for enquiries.
  * Version:           1.0.0
  * Author:            Rodrigo Salles
  * Author URI:        https://rodrigosalles.com

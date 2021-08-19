@@ -23,9 +23,9 @@
 class Codeable_Custom_Form_Deactivator {
 
 	/**
-	 * Short Description. (use period)
+	 * Fired during plugin deactivation.
 	 *
-	 * Long Description.
+	 * This function handles all the necessary functionalities up on deactivation.
 	 *
 	 * @since    1.0.0
 	 */

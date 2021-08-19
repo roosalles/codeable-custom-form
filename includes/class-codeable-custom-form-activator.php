@@ -23,9 +23,9 @@
 class Codeable_Custom_Form_Activator {
 
 	/**
-	 * Short Description. (use period)
+	 * Fired during plugin activation.
 	 *
-	 * Long Description.
+	 * This function handles all the necessary functionalities up on activation.
 	 *
 	 * @since    1.0.0
 	 */
