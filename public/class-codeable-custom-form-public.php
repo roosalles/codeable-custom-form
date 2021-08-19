@@ -267,6 +267,7 @@ class Codeable_Custom_Form_Public {
 		$attributes = shortcode_atts(
 			array(
 				'entries-per-page' => 10,
+				'entries-order'    => 'DESC',
 			),
 			$atts
 		);
@@ -281,7 +282,7 @@ class Codeable_Custom_Form_Public {
 					<th><?php esc_html_e( 'E-mail', 'codeable-custom-form' ); ?></th>
 					<th><?php esc_html_e( 'Subject', 'codeable-custom-form' ); ?></th>
 				</tr>
-				<?php $this->load_entries( 1, $attributes['entries-per-page'] ); ?>
+				<?php $this->load_entries( 1, $attributes['entries-per-page'], $attributes['entries-order'] ); ?>
 			</table>
 			<?php $this->render_pagination_nav( $attributes['entries-per-page'] ); ?>
 			<div id="ccf-entry-details"></div>
@@ -324,7 +325,7 @@ class Codeable_Custom_Form_Public {
 	 * @param    string $page                The page to be loaded.
 	 * @param    string $entries_per_page    The number of entries to load per page..
 	 */
-	public function load_entries( $page, $entries_per_page ) {
+	public function load_entries( $page, $entries_per_page, $entries_order ) {
 
 		$my_sql_index = $page - 1;
 		$start_index  = $my_sql_index * $entries_per_page;
@@ -332,7 +333,7 @@ class Codeable_Custom_Form_Public {
 		global $wpdb;
 
 		// Query entries.
-		$sql     = $wpdb->prepare( "SELECT * FROM {$this->table_name} ORDER BY submission_date DESC LIMIT %d, %d", $start_index, $entries_per_page );
+		$sql     = $wpdb->prepare( "SELECT * FROM {$this->table_name} ORDER BY submission_date {$entries_order} LIMIT %d, %d", $start_index, $entries_per_page );
 		$entries = $wpdb->get_results( $sql );
 
 		$this->render_entries( $entries );
