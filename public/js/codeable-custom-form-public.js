@@ -80,11 +80,34 @@
 					entries_per_page : $( '#ccf-pagination-nav' ).data( 'entries-per-page' ),
 				},
 				success: function ( response ) {
-					console.log( response.entriesHTML );
 					$( '.ccf-entry-row' ).remove();
 					$( '#ccf-entries-table tbody' ).append( response.entriesHTML );
 				}
 			} );
+		} );
+
+		// Handle Single Entry click.
+		$( '#ccf-entries-table' ).on( 'click', '.ccf-entry-row', function() {
+
+			// AJAX Call to load single entry by ID.
+			$.ajax( {
+				type: 'post',
+				url: ccfAjaxObject.ajax_url,
+				data: {
+					action   : 'ccf_load_single_entry',
+					nonce    : ccfAjaxObject.ajax_nonce,
+					entry_id : $( this ).data( 'entry-id' ),
+				},
+				success: function ( response ) {
+					$( '#ccf-entry-details' ).empty();
+					$( '#ccf-entry-details' ).html( response.entryHTML );
+				}
+			} );
+		} );
+
+		// Handle Close Details button click.
+		$( '#ccf-entry-details' ).on( 'click', '#ccf-close-details-button', function() {
+			$( '#ccf-entry-details' ).empty();
 		} );
 
 	} );

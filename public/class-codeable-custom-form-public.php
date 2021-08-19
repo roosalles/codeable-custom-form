@@ -142,6 +142,7 @@ class Codeable_Custom_Form_Public {
 				'message'         => $message,
 			)
 		);
+
 	}
 
 	/**
@@ -226,6 +227,7 @@ class Codeable_Custom_Form_Public {
 		<?php
 
 		return ob_get_clean();
+
 	}
 
 	/**
@@ -237,6 +239,7 @@ class Codeable_Custom_Form_Public {
 	public function register_ccf_entries_shortcode( $atts ) {
 
 		return $this->render_entries_table( $atts );
+
 	}
 
 	/**
@@ -264,18 +267,20 @@ class Codeable_Custom_Form_Public {
 		<div class="ccf-entries-wrapper">
 			<table id="ccf-entries-table">
 				<tr>
-					<th>First Name</th>
-					<th>Last Name</th>
-					<th>E-mail</th>
-					<th>Subject</th>
+					<th><?php esc_html_e( 'First Name', 'codeable-custom-form' ); ?></th>
+					<th><?php esc_html_e( 'Last Name', 'codeable-custom-form' ); ?></th>
+					<th><?php esc_html_e( 'E-mail', 'codeable-custom-form' ); ?></th>
+					<th><?php esc_html_e( 'Subject', 'codeable-custom-form' ); ?></th>
 				</tr>
 				<?php $this->load_entries( 1, $attributes['entries-per-page'] ); ?>
 			</table>
 			<?php $this->render_pagination_nav( $attributes['entries-per-page'] ); ?>
+			<div id="ccf-entry-details"></div>
 		</div>
 		<?php
 
 		return ob_get_clean();
+
 	}
 
 	/**
@@ -300,6 +305,7 @@ class Codeable_Custom_Form_Public {
 		);
 
 		wp_send_json( $ajax_response );
+
 	}
 
 	/**
@@ -312,11 +318,7 @@ class Codeable_Custom_Form_Public {
 	public function load_entries( $page, $entries_per_page ) {
 
 		$my_sql_index = $page - 1;
-		// $previous_btn = true;
-		// $next_btn     = true;
-		// $first_btn    = true;
-		// $last_btn     = true;
-		$start_index = $my_sql_index * $entries_per_page;
+		$start_index  = $my_sql_index * $entries_per_page;
 
 		global $wpdb;
 		$table_name = $wpdb->prefix . 'codeable_form_entries';
@@ -326,6 +328,59 @@ class Codeable_Custom_Form_Public {
 		$entries = $wpdb->get_results( $sql );
 
 		$this->render_entries( $entries );
+
+	}
+
+	/**
+	 * Load form entries from the database.
+	 *
+	 * @since    1.0.0
+	 */
+	public function load_single_entry() {
+
+		$entry_id = $_POST['entry_id'];
+
+		global $wpdb;
+		$table_name = $wpdb->prefix . 'codeable_form_entries';
+
+		// Query entries.
+		$sql     = $wpdb->prepare( "SELECT * FROM $table_name WHERE id = %d", $entry_id );
+		$entries = $wpdb->get_results( $sql );
+		$entry   = $entries[0];
+
+		ob_start();
+		?>
+		<table id="ccf-entry-details-table">
+			<tr class="ccf-entry-details-table-header">
+				<th colspan="2"><?php esc_html_e( 'Entry Details', 'codeable-custom-form' ); ?><span id="ccf-close-details-button">x</span></th>
+			</tr>
+			<tr class="ccf-entry-detail-row">
+				<th><?php esc_html_e( 'Name:', 'codeable-custom-form' ); ?></th>
+				<td><?php echo esc_html( $entry->first_name . ' ' . $entry->last_name ); ?></td>
+			</tr>
+			<tr class="ccf-entry-detail-row">
+				<th><?php esc_html_e( 'E-mail:', 'codeable-custom-form' ); ?></th>
+				<td><?php echo esc_html( $entry->email ); ?></td>
+			</tr>
+			<tr class="ccf-entry-detail-row">
+				<th><?php esc_html_e( 'Subject:', 'codeable-custom-form' ); ?></th>
+				<td><?php echo esc_html( $entry->subject ); ?></td>
+			</tr>
+			<tr class="ccf-entry-detail-row">
+				<th><?php esc_html_e( 'Message:', 'codeable-custom-form' ); ?></th>
+				<td><?php echo esc_html( $entry->message ); ?></td>
+			</tr>
+		</table>
+		<?php
+
+		$entry_html = ob_get_clean();
+
+		$ajax_response = array(
+			'entryHTML' => $entry_html,
+		);
+
+		wp_send_json( $ajax_response );
+
 	}
 
 	/**
@@ -351,6 +406,7 @@ class Codeable_Custom_Form_Public {
 		endforeach;
 
 		echo ob_get_clean();
+
 	}
 
 	/**
@@ -381,6 +437,7 @@ class Codeable_Custom_Form_Public {
 		</div>
 		<?php
 		echo ob_get_clean();
+
 	}
 
 }

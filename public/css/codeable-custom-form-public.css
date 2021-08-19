@@ -32,7 +32,6 @@
 
 #ccf-entries-table td,
 #ccf-entries-table th {
-	border: 1px solid #ddd;
 	padding: 12px;
 	width: 25%;
 	white-space: nowrap;
@@ -74,4 +73,23 @@
 
 #ccf-pagination-nav .ccf-nav-active:hover {
 	cursor: default;
+}
+
+#ccf-entry-details-table .ccf-entry-details-table-header th {
+	text-align: center;
+	background-color: gainsboro;
+	position: relative;
+}
+
+#ccf-close-details-button {
+	position: absolute;
+	right: 10px;
+}
+
+#ccf-close-details-button:hover {
+	cursor: pointer;
+}
+
+#ccf-entry-details-table .ccf-entry-detail-row th {
+	width: 25%;
 }
