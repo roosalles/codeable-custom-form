@@ -1,0 +1,102 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Codeable Custom Form\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-08-19 10:51-0300\n"
+"PO-Revision-Date: 2021-08-19 11:01-0300\n"
+"Language-Team: \n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.0.1\n"
+"X-Loco-Version: 2.5.3; wp-5.8\n"
+"X-Domain: codeable-custom-form\n"
+"Last-Translator: \n"
+"Language: pt_BR\n"
+
+#. Description of the plugin
+msgid "Basic plugin to display custom form for enquiries."
+msgstr "Plugins básico para exibir formulário de dúvidas, orçamentos e afins."
+
+#. Name of the plugin
+msgid "Codeable Custom Form"
+msgstr "Codeable Custom Form"
+
+#: public/class-codeable-custom-form-public.php:282
+msgid "E-mail"
+msgstr "E-mail"
+
+#: public/class-codeable-custom-form-public.php:370
+msgid "E-mail:"
+msgstr "E-mail:"
+
+#: public/class-codeable-custom-form-public.php:363
+msgid "Entry Details"
+msgstr "Detalhes do Item"
+
+#: public/class-codeable-custom-form-public.php:280
+msgid "First Name"
+msgstr "Nome"
+
+#: public/class-codeable-custom-form-public.php:212
+msgid "First Name:"
+msgstr "Nome:"
+
+#. URI of the plugin
+msgid "https://codeable.com"
+msgstr "https://codeable.com"
+
+#. Author URI of the plugin
+msgid "https://rodrigosalles.com"
+msgstr "https://rodrigosalles.com"
+
+#: public/class-codeable-custom-form-public.php:281
+msgid "Last Name"
+msgstr "Sobrenome"
+
+#: public/class-codeable-custom-form-public.php:216
+msgid "Last Name:"
+msgstr "Sobrenome:"
+
+#: public/class-codeable-custom-form-public.php:228
+#: public/class-codeable-custom-form-public.php:378
+msgid "Message:"
+msgstr "Mensagem:"
+
+#: public/class-codeable-custom-form-public.php:366
+msgid "Name:"
+msgstr "Nome:"
+
+#. Author of the plugin
+msgid "Rodrigo Salles"
+msgstr "Rodrigo Salles"
+
+#: public/class-codeable-custom-form-public.php:207
+msgid "Something went wrong, please try again or contact the site administrator."
+msgstr "Ocorreu algo de errado, por favor tente novamente ou entre em contato com o administrador do site."
+
+#: public/class-codeable-custom-form-public.php:283
+msgid "Subject"
+msgstr "Assunto"
+
+#: public/class-codeable-custom-form-public.php:224
+#: public/class-codeable-custom-form-public.php:374
+msgid "Subject:"
+msgstr "Assunto:"
+
+#: public/class-codeable-custom-form-public.php:179
+msgid "Submit Enquiry"
+msgstr "Enviar"
+
+#: public/class-codeable-custom-form-public.php:178
+msgid "Submit your feedback"
+msgstr "Entre em contato"
+
+#: public/class-codeable-custom-form-public.php:180
+msgid "Thank you for sending us your feedback!"
+msgstr "Obrigado pelo contato!"
+
+#: public/class-codeable-custom-form-public.php:264
+msgid "You are not authorized to view the content of this page."
+msgstr "Você não é autorizado a visualizar o conteúdo desta página."
