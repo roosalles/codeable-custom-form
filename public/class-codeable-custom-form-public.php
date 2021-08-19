@@ -274,7 +274,7 @@ class Codeable_Custom_Form_Public {
 
 		$attributes['entries-per-page'] = intval( $attributes['entries-per-page'] );
 
-		// Prevent users from setting invalid "Entries per page" values (lower than 1).
+		// Prevent users from setting invalid "Entries per page" values (lower than 1 or non-integers).
 		// Set default value to 10.
 		if ( $attributes['entries-per-page'] < 1 ) {
 			$attributes['entries-per-page'] = 10;
