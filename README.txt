@@ -15,10 +15,6 @@ This is a basic plugin/project built for Codeable screening process.
 
 == Installation ==
 
-This section describes how to install the plugin and get it working.
-
-e.g.
-
 1. Upload `codeable-custom-form.php` to the `/wp-content/plugins/` directory
 2. Activate the plugin through the 'Plugins' menu in WordPress
 3. Place `[ccf-form]` shortcode on any page you want the form to be displayed.
