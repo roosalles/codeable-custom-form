@@ -1,41 +1,17 @@
 === Plugin Name ===
-Contributors: (this should be a list of wordpress.org userid's)
+Contributors: roosalles
 Donate link: https://rodrigosalles.com
-Tags: comments, spam
+Tags: codeable, forms
 Requires at least: 3.0.1
-Tested up to: 3.4
-Stable tag: 4.3
+Tested up to: 5.8
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Here is a short description of the plugin.  This should be no more than 150 characters.  No markup here.
+Basic plugin to display custom form for enquiries.
 
 == Description ==
 
-This is the long description.  No limit, and you can use Markdown (as well as in the following sections).
-
-For backwards compatibility, if this section is missing, the full length of the short description will be used, and
-Markdown parsed.
-
-A few notes about the sections above:
-
-*   "Contributors" is a comma separated list of wp.org/wp-plugins.org usernames
-*   "Tags" is a comma separated list of tags that apply to the plugin
-*   "Requires at least" is the lowest version that the plugin will work on
-*   "Tested up to" is the highest version that you've *successfully used to test the plugin*. Note that it might work on
-higher versions... this is just the highest one you've verified.
-*   Stable tag should indicate the Subversion "tag" of the latest stable version, or "trunk," if you use `/trunk/` for
-stable.
-
-    Note that the `readme.txt` of the stable tag is the one that is considered the defining one for the plugin, so
-if the `/trunk/readme.txt` file says that the stable tag is `4.3`, then it is `/tags/4.3/readme.txt` that'll be used
-for displaying information about the plugin.  In this situation, the only thing considered from the trunk `readme.txt`
-is the stable tag pointer.  Thus, if you develop in trunk, you can update the trunk `readme.txt` to reflect changes in
-your in-development version, without having that information incorrectly disclosed about the current stable version
-that lacks those changes -- as long as the trunk's `readme.txt` points to the correct stable tag.
-
-    If no stable tag is provided, it is assumed that trunk is stable, but you should specify "trunk" if that's where
-you put the stable version, in order to eliminate any doubt.
+This is a basic plugin/project built for Codeable screening process.
 
 == Installation ==
 
@@ -44,71 +20,46 @@ This section describes how to install the plugin and get it working.
 e.g.
 
 1. Upload `codeable-custom-form.php` to the `/wp-content/plugins/` directory
-1. Activate the plugin through the 'Plugins' menu in WordPress
-1. Place `<?php do_action('plugin_name_hook'); ?>` in your templates
+2. Activate the plugin through the 'Plugins' menu in WordPress
+3. Place `[ccf-form]` shortcode on any page you want the form to be displayed.
+4. Place `[ccf-entries]` shortcode on any page you want the form entries to be displayed.
 
-== Frequently Asked Questions ==
+For more options that can be used with the shortcodes above, please see below:
 
-= A question that someone might have =
+= [ccf-form] Shortcode Options =
 
-An answer to that question.
+You can use the following options with the [ccf-form] shortcode:
 
-= What about foo bar? =
+[ccf-form form-title="Your Title"]
+This defines a custom title for the form. Default: 'Submit your feedback'
 
-Answer to foo bar dilemma.
+[ccf-form submit-button-label="Your custom label"]
+This defines a custom label text for the submit button. Default: 'Submit Enquiry'
 
-== Screenshots ==
+[ccf-form thank-you-message="Your custom thank you message!"]
+This defines a custom text when the form is submitted successfully. Default: 'Thank you for sending us your feedback!'
 
-1. This screen shot description corresponds to screenshot-1.(png|jpg|jpeg|gif). Note that the screenshot is taken from
-the /assets directory or the directory that contains the stable readme.txt (tags or trunk). Screenshots in the /assets
-directory take precedence. For example, `/assets/screenshot-1.png` would win over `/tags/4.3/screenshot-1.png`
-(or jpg, jpeg, gif).
-2. This is the second screen shot
+[ccf-form form-width="50%"]
+Sets a custom width for the form. Default: '100%'
+
+Note: You can also combine all options:
+[ccf-form form-title="Your Title" submit-button-label="Your custom label" thank-you-message="Your custom thank you message!" form-width="50%"]
+
+= [ccf-entries] Shortcode Options =
+
+You can use the following options with the [ccf-entries] shortcode:
+
+[ccf-entries entries-per-page="20"]
+This defines the number of entries to be displayed per page. Default: 10
+
+[ccf-entries entries-order="ASC"]
+This defines the order (ascending/descending - by entry date) of entries listed in the entries table. Default: "DESC"
+Values accepted: "ASC" or "DESC"
+
+Note: You can also combine all options:
+[ccf-entries entries-per-page="20" entries-order="ASC"]
 
 == Changelog ==
 
 = 1.0 =
-* A change since the previous version.
-* Another change.
-
-= 0.5 =
-* List versions from most recent at top to oldest at bottom.
-
-== Upgrade Notice ==
-
-= 1.0 =
-Upgrade notices describe the reason a user should upgrade.  No more than 300 characters.
-
-= 0.5 =
-This version fixes a security related bug.  Upgrade immediately.
-
-== Arbitrary section ==
-
-You may provide arbitrary sections, in the same format as the ones above.  This may be of use for extremely complicated
-plugins where more information needs to be conveyed that doesn't fit into the categories of "description" or
-"installation."  Arbitrary sections will be shown below the built-in sections outlined above.
-
-== A brief Markdown Example ==
-
-Ordered list:
-
-1. Some feature
-1. Another feature
-1. Something else about the plugin
-
-Unordered list:
-
-* something
-* something else
-* third thing
-
-Here's a link to [WordPress](http://wordpress.org/ "Your favorite software") and one to [Markdown's Syntax Documentation][markdown syntax].
-Titles are optional, naturally.
-
-[markdown syntax]: http://daringfireball.net/projects/markdown/syntax
-            "Markdown is what the parser uses to process much of the readme file"
-
-Markdown uses email style notation for blockquotes and I've been told:
-> Asterisks for *emphasis*. Double it up  for **strong**.
-
-`<?php code(); // goes in backticks ?>`
+* First version of the plugin.
