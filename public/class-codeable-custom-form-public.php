@@ -132,11 +132,11 @@ class Codeable_Custom_Form_Public {
 			wp_die();
 		}
 
-		$first_name = $_POST['first_name'];
-		$last_name  = $_POST['last_name'];
-		$email      = $_POST['email'];
-		$subject    = $_POST['subject'];
-		$message    = $_POST['message'];
+		$first_name = sanitize_text_field( wp_unslash( $_POST['first_name'] ) );
+		$last_name  = sanitize_text_field( wp_unslash( $_POST['last_name'] ) );
+		$email      = sanitize_email( wp_unslash( $_POST['email'] ) );
+		$subject    = sanitize_text_field( wp_unslash( $_POST['subject'] ) );
+		$message    = sanitize_textarea_field( wp_unslash( $_POST['message'] ) );
 
 		global $wpdb;
 
