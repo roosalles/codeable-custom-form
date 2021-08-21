@@ -264,6 +264,10 @@ class Codeable_Custom_Form_Public {
 			return '<p>' . __( 'You are not authorized to view the content of this page.', 'codeable-custom-form' ) . '</p>';
 		}
 
+		if ( ! $this->get_entries_count() ) {
+			return '<p>' . __( 'No results found.', 'codeable-custom-form' ) . '</p>';
+		}
+
 		$attributes = shortcode_atts(
 			array(
 				'entries-per-page' => 10,
@@ -444,13 +448,7 @@ class Codeable_Custom_Form_Public {
 	 */
 	public function render_pagination_nav( $entries_per_page ) {
 
-		global $wpdb;
-
-		$count = $wpdb->get_var(
-			$wpdb->prepare( "SELECT COUNT(id) FROM {$this->table_name}" )
-		);
-
-		$total_pages = ceil( $count / $entries_per_page );
+		$total_pages = ceil( $this->get_entries_count() / $entries_per_page );
 
 		// Don't display pagination if there's only one page to show.
 		if ( 1 == $total_pages ) {
@@ -471,4 +469,19 @@ class Codeable_Custom_Form_Public {
 
 	}
 
+	/**
+	 * Get total number of entries.
+	 *
+	 * @since    1.0.0
+	 */
+	public function get_entries_count() {
+
+		global $wpdb;
+
+		$count = $wpdb->get_var(
+			$wpdb->prepare( "SELECT COUNT(id) FROM {$this->table_name}" )
+		);
+
+		return $count;
+	}
 }
