@@ -12,6 +12,7 @@ Basic plugin to display custom form for enquiries.
 == Description ==
 
 This is a basic plugin/project built for Codeable screening process.
+This plugin was built based on the popular WordPress Plugin starter kit from https://wppb.me/
 
 == Installation ==
 
