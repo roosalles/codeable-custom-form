@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Codeable Custom Form\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-19 10:51-0300\n"
-"PO-Revision-Date: 2021-08-19 11:01-0300\n"
+"POT-Creation-Date: 2021-08-21 13:11-0300\n"
+"PO-Revision-Date: 2021-08-21 13:15-0300\n"
 "Language-Team: \n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "MIME-Version: 1.0\n"
@@ -12,8 +12,10 @@ msgstr ""
 "X-Generator: Poedit 2.0.1\n"
 "X-Loco-Version: 2.5.3; wp-5.8\n"
 "X-Domain: codeable-custom-form\n"
+"X-Poedit-Basepath: ..\n"
 "Last-Translator: \n"
 "Language: pt_BR\n"
+"X-Poedit-SearchPath-0: .\n"
 
 #. Description of the plugin
 msgid "Basic plugin to display custom form for enquiries."
@@ -23,19 +25,20 @@ msgstr "Plugins básico para exibir formulário de dúvidas, orçamentos e afins
 msgid "Codeable Custom Form"
 msgstr "Codeable Custom Form"
 
-#: public/class-codeable-custom-form-public.php:282
+#: public/class-codeable-custom-form-public.php:304
 msgid "E-mail"
 msgstr "E-mail"
 
-#: public/class-codeable-custom-form-public.php:370
+#: public/class-codeable-custom-form-public.php:220
+#: public/class-codeable-custom-form-public.php:393
 msgid "E-mail:"
 msgstr "E-mail:"
 
-#: public/class-codeable-custom-form-public.php:363
+#: public/class-codeable-custom-form-public.php:386
 msgid "Entry Details"
 msgstr "Detalhes do Item"
 
-#: public/class-codeable-custom-form-public.php:280
+#: public/class-codeable-custom-form-public.php:302
 msgid "First Name"
 msgstr "Nome"
 
@@ -51,7 +54,7 @@ msgstr "https://codeable.com"
 msgid "https://rodrigosalles.com"
 msgstr "https://rodrigosalles.com"
 
-#: public/class-codeable-custom-form-public.php:281
+#: public/class-codeable-custom-form-public.php:303
 msgid "Last Name"
 msgstr "Sobrenome"
 
@@ -60,13 +63,17 @@ msgid "Last Name:"
 msgstr "Sobrenome:"
 
 #: public/class-codeable-custom-form-public.php:228
-#: public/class-codeable-custom-form-public.php:378
+#: public/class-codeable-custom-form-public.php:401
 msgid "Message:"
 msgstr "Mensagem:"
 
-#: public/class-codeable-custom-form-public.php:366
+#: public/class-codeable-custom-form-public.php:389
 msgid "Name:"
 msgstr "Nome:"
+
+#: public/class-codeable-custom-form-public.php:268
+msgid "No results found."
+msgstr "Nenhum resultado encontrado."
 
 #. Author of the plugin
 msgid "Rodrigo Salles"
@@ -76,12 +83,12 @@ msgstr "Rodrigo Salles"
 msgid "Something went wrong, please try again or contact the site administrator."
 msgstr "Ocorreu algo de errado, por favor tente novamente ou entre em contato com o administrador do site."
 
-#: public/class-codeable-custom-form-public.php:283
+#: public/class-codeable-custom-form-public.php:305
 msgid "Subject"
 msgstr "Assunto"
 
 #: public/class-codeable-custom-form-public.php:224
-#: public/class-codeable-custom-form-public.php:374
+#: public/class-codeable-custom-form-public.php:397
 msgid "Subject:"
 msgstr "Assunto:"
 
