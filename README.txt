@@ -1,9 +1,11 @@
-=== Plugin Name ===
+=== Codeable Custom Form ===
 Contributors: roosalles
 Donate link: https://rodrigosalles.com
 Tags: codeable, forms
 Requires at least: 3.0.1
 Tested up to: 5.8
+Stable tag: 4.3
+Requires PHP: 7.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -55,6 +57,18 @@ Values accepted: "ASC" or "DESC"
 
 Note: You can also combine all options:
 [ccf-entries entries-per-page="20" entries-order="ASC"]
+
+== Frequently Asked Questions ==
+
+No questions so far. =)
+
+== Upgrade Notice ==
+
+None.
+
+== Screenshots ==
+
+ 1. None
 
 == Changelog ==
 
