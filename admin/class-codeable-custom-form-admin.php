@@ -17,7 +17,7 @@
  *
  * @package    Codeable_Custom_Form
  * @subpackage Codeable_Custom_Form/admin
- * @author     Rodrigo Salles <rodrigo@rproject.ws>
+ * @author     Rodrigo Salles <rodrigo@rprojectwebstudio.com>
  */
 class Codeable_Custom_Form_Admin {
 
