@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Define the internationalization functionality
  *
@@ -24,8 +23,7 @@
  * @subpackage Codeable_Custom_Form/includes
  * @author     Rodrigo Salles <rodrigo@rproject.ws>
  */
-class Codeable_Custom_Form_i18n {
-
+class Codeable_Custom_Form_I18n {
 
 	/**
 	 * Load the plugin text domain for translation.
@@ -41,7 +39,5 @@ class Codeable_Custom_Form_i18n {
 		);
 
 	}
-
-
 
 }

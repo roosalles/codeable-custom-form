@@ -1,5 +1,4 @@
 <?php
-
 /**
  * The public-facing functionality of the plugin.
  *
@@ -53,8 +52,9 @@ class Codeable_Custom_Form_Public {
 	 * Initialize the class and set its properties.
 	 *
 	 * @since    1.0.0
-	 * @param      string $plugin_name       The name of the plugin.
+	 * @param      string $plugin_name   The name of the plugin.
 	 * @param      string $version    The version of this plugin.
+	 * @param      string $table_name    The name of the table used for form entries.
 	 */
 	public function __construct( $plugin_name, $version, $table_name ) {
 
@@ -140,6 +140,7 @@ class Codeable_Custom_Form_Public {
 
 		global $wpdb;
 
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery
 		$wpdb->insert(
 			$this->table_name,
 			array(
@@ -286,7 +287,7 @@ class Codeable_Custom_Form_Public {
 
 		// Prevent users from setting invalid "entries-order" values (different than ASC or DESC).
 		// Set default value to DESC.
-		if ( 'DESC' != $attributes['entries-order'] && 'ASC' != $attributes['entries-order'] ) {
+		if ( 'DESC' !== $attributes['entries-order'] && 'ASC' !== $attributes['entries-order'] ) {
 			$attributes['entries-order'] = 'DESC';
 		}
 
@@ -324,9 +325,17 @@ class Codeable_Custom_Form_Public {
 
 		check_ajax_referer( 'ccf_nonce', 'nonce' );
 
-		$page             = $_POST['page'];
-		$entries_per_page = $_POST['entries_per_page'];
-		$entries_order    = $_POST['entries_order'];
+		if ( ! empty( $_POST['page'] ) ) {
+			$page = sanitize_text_field( wp_unslash( $_POST['page'] ) );
+		}
+
+		if ( ! empty( $_POST['entries_per_page'] ) ) {
+			$entries_per_page = sanitize_text_field( wp_unslash( $_POST['entries_per_page'] ) );
+		}
+
+		if ( ! empty( $_POST['entries_order'] ) ) {
+			$entries_order = sanitize_text_field( wp_unslash( $_POST['entries_order'] ) );
+		}
 
 		ob_start();
 		$this->load_entries( $page, $entries_per_page, $entries_order );
@@ -346,7 +355,8 @@ class Codeable_Custom_Form_Public {
 	 *
 	 * @since    1.0.0
 	 * @param    string $page                The page to be loaded.
-	 * @param    string $entries_per_page    The number of entries to load per page..
+	 * @param    string $entries_per_page    The number of entries to load per page.
+	 * @param    string $entries_order       The order of entries, ordered by submission date (ASC/DESC).
 	 */
 	public function load_entries( $page, $entries_per_page, $entries_order ) {
 
@@ -356,7 +366,9 @@ class Codeable_Custom_Form_Public {
 		global $wpdb;
 
 		// Query entries.
-		$sql     = $wpdb->prepare( "SELECT * FROM {$this->table_name} ORDER BY submission_date {$entries_order} LIMIT %d, %d", $start_index, $entries_per_page );
+		$sql = $wpdb->prepare( 'SELECT * FROM %s ORDER BY submission_date %s LIMIT %d, %d', $this->table_name, $entries_order, $start_index, $entries_per_page );
+
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.NotPrepared
 		$entries = $wpdb->get_results( $sql );
 
 		$this->render_entries( $entries );
@@ -370,12 +382,20 @@ class Codeable_Custom_Form_Public {
 	 */
 	public function load_single_entry() {
 
-		$entry_id = $_POST['entry_id'];
+		// phpcs:ignore WordPress.Security.NonceVerification.Missing
+		if ( ! empty( $_POST['entry_id'] ) ) {
+
+			// phpcs:ignore WordPress.Security.NonceVerification.Missing
+			$entry_id = sanitize_text_field( wp_unslash( $_POST['entry_id'] ) );
+
+		}
 
 		global $wpdb;
 
 		// Query entries.
-		$sql     = $wpdb->prepare( "SELECT * FROM {$this->table_name} WHERE id = %d", $entry_id );
+		$sql = $wpdb->prepare( 'SELECT * FROM %s WHERE id = %d', $this->table_name, $entry_id );
+
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.NotPrepared
 		$entries = $wpdb->get_results( $sql );
 		$entry   = $entries[0];
 
@@ -436,6 +456,7 @@ class Codeable_Custom_Form_Public {
 			<?php
 		endforeach;
 
+		// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		echo ob_get_clean();
 
 	}
@@ -451,7 +472,7 @@ class Codeable_Custom_Form_Public {
 		$total_pages = ceil( $this->get_entries_count() / $entries_per_page );
 
 		// Don't display pagination if there's only one page to show.
-		if ( 1 == $total_pages ) {
+		if ( 1 === $total_pages ) {
 			return;
 		}
 
@@ -460,11 +481,13 @@ class Codeable_Custom_Form_Public {
 		<div id="ccf-pagination-nav-wrapper">
 			<ul id="ccf-pagination-nav">
 				<?php for ( $i = 1; $i <= $total_pages; $i++ ) : ?>
-					<li class="<?php echo $i == 1 ? 'ccf-nav-active' : ''; ?>" data-page="<?php echo esc_attr( $i ); ?>"><?php echo esc_html( $i ); ?></li>
+					<li class="<?php echo 1 === $i ? 'ccf-nav-active' : ''; ?>" data-page="<?php echo esc_attr( $i ); ?>"><?php echo esc_html( $i ); ?></li>
 				<?php endfor; ?>
 			</ul>
 		</div>
 		<?php
+
+		// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		echo ob_get_clean();
 
 	}
@@ -478,10 +501,13 @@ class Codeable_Custom_Form_Public {
 
 		global $wpdb;
 
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
 		$count = $wpdb->get_var(
-			$wpdb->prepare( "SELECT COUNT(id) FROM {$this->table_name}" )
+			$wpdb->prepare( 'SELECT COUNT(id) FROM %d', $this->table_name )
 		);
 
 		return $count;
+
 	}
+
 }

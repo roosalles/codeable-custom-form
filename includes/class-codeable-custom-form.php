@@ -1,5 +1,4 @@
 <?php
-
 /**
  * The file that defines the core plugin class
  *
@@ -207,7 +206,9 @@ class Codeable_Custom_Form {
 	 * @since    1.0.0
 	 */
 	public function run() {
+
 		$this->loader->run();
+
 	}
 
 	/**
@@ -218,7 +219,9 @@ class Codeable_Custom_Form {
 	 * @return    string    The name of the plugin.
 	 */
 	public function get_plugin_name() {
+
 		return $this->plugin_name;
+
 	}
 
 	/**
@@ -228,7 +231,9 @@ class Codeable_Custom_Form {
 	 * @return    Codeable_Custom_Form_Loader    Orchestrates the hooks of the plugin.
 	 */
 	public function get_loader() {
+
 		return $this->loader;
+
 	}
 
 	/**
@@ -238,7 +243,9 @@ class Codeable_Custom_Form {
 	 * @return    string    The version number of the plugin.
 	 */
 	public function get_version() {
+
 		return $this->version;
+
 	}
 
 	/**
@@ -248,7 +255,9 @@ class Codeable_Custom_Form {
 	 * @return    string    The DB table name used for storing entries.
 	 */
 	public function get_table_name() {
+
 		return $this->table_name;
+
 	}
 
 }
