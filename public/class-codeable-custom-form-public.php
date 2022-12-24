@@ -472,7 +472,7 @@ class Codeable_Custom_Form_Public {
 		$total_pages = ceil( $this->get_entries_count() / $entries_per_page );
 
 		// Don't display pagination if there's only one page to show.
-		if ( 1 === $total_pages ) {
+		if ( 1 === intval( $total_pages ) ) {
 			return;
 		}
 
