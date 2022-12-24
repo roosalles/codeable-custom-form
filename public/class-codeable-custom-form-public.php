@@ -366,7 +366,8 @@ class Codeable_Custom_Form_Public {
 		global $wpdb;
 
 		// Query entries.
-		$sql = $wpdb->prepare( 'SELECT * FROM %s ORDER BY submission_date %s LIMIT %d, %d', $this->table_name, $entries_order, $start_index, $entries_per_page );
+		//phpcs:ignore WordPress.DB.PreparedSQLPlaceholders.UnquotedComplexPlaceholder
+		$sql = $wpdb->prepare( 'SELECT * FROM %1s ORDER BY submission_date %1s LIMIT %d, %d', $this->table_name, $entries_order, $start_index, $entries_per_page );
 
 		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.NotPrepared
 		$entries = $wpdb->get_results( $sql );
@@ -393,7 +394,8 @@ class Codeable_Custom_Form_Public {
 		global $wpdb;
 
 		// Query entries.
-		$sql = $wpdb->prepare( 'SELECT * FROM %s WHERE id = %d', $this->table_name, $entry_id );
+		//phpcs:ignore WordPress.DB.PreparedSQLPlaceholders.UnquotedComplexPlaceholder
+		$sql = $wpdb->prepare( 'SELECT * FROM %1s WHERE id = %d', $this->table_name, $entry_id );
 
 		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.NotPrepared
 		$entries = $wpdb->get_results( $sql );
@@ -503,7 +505,9 @@ class Codeable_Custom_Form_Public {
 
 		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
 		$count = $wpdb->get_var(
-			$wpdb->prepare( 'SELECT COUNT(id) FROM %d', $this->table_name )
+
+			//phpcs:ignore WordPress.DB.PreparedSQLPlaceholders.UnquotedComplexPlaceholder
+			$wpdb->prepare( 'SELECT COUNT(id) FROM %1s', $this->table_name )
 		);
 
 		return $count;
