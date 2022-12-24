@@ -78,6 +78,10 @@
 	cursor: default;
 }
 
+#ccf-entry-details-table {
+	width: 100%;
+}
+
 #ccf-entry-details-table tbody {
 	border: 1px solid #ccc;
 }
