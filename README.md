@@ -78,6 +78,14 @@ Values accepted: "ASC" or "DESC"
 
 	[ccf-entries entries-per-page="20" entries-order="ASC"]
 
+## Demo
+
+For basic functionalities demonstration, please visit:  
+
+Form page: https://playground.rprojectwebstudio.com/codeable-custom-form-form-page/
+
+Entries page: https://playground.rprojectwebstudio.com/codeable-custom-form-entries-page/
+
 ## Changelog
 
 = 1.0 =  
